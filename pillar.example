@@ -5,6 +5,12 @@ php:
   use_external_repo: True
   # Set the external repository name (valid only if use_external_repo is not none)
   external_repo_name: 'ondrej/php'
+  # Use Software Collections Repository offering PHP 5.4, 5.5, 5.6, 7.0 and 7.1
+  # https://www.softwarecollections.org/en/ for more information.
+  # SCL is only supported on RHEL and CentOS and only active when using php.ng
+  use_scl_repo: True
+  # Which PHP version from the SCL repos to use
+  scl_php_version: 71
   # Set the MongoDB driver version. You can specify (optionally) the driver version
   # when you add the php.mongo formula to your execution list
   mongo_version: "1.5.5"
@@ -14,7 +20,7 @@ php:
     # represented, please consider adding it to the map.jinja for
     # upstream inclusion
     lookup:
-
+      enable_php_repo: centos-sclo-rh-testing
       # package definitions, these can be strings, lists of strings, or
       # lists of dictionaries
       pkgs:
@@ -171,3 +177,16 @@ php:
             - pcntl_wait
         'CLI Server':
           cli_server_color: 'On'
+
+    # List of modules to install via php.ng.modules
+    modules:
+      # Calls `php.ng.<name>` if available, or try to install the matching
+      # packages that can be set via from php:ng:lookup:pkgs
+      - cli
+      - fpm
+      - curl
+      - mysql
+
+    # When using php.ng.apache2 on FreeBSD:
+    # Set this to False if you're not using apache-formula
+    use_apache_formula: True

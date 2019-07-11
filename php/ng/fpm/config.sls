@@ -3,7 +3,7 @@
 {% from "php/ng/ini.jinja" import php_ini %}
 
 {% set ini_settings = php.ini.defaults %}
-{% for key, value in php.fpm.config.ini.settings.iteritems() %}
+{% for key, value in php.fpm.config.ini.settings.items() %}
   {% if ini_settings[key] is defined %}
     {% do ini_settings[key].update(value) %}
   {% else %}
@@ -23,7 +23,7 @@ php_fpm_conf_config:
 {{ php.lookup.fpm.pools }}:
     file.directory:
         - name: {{ php.lookup.fpm.pools }}
-        - user: root
-        - group: root
+        - user: {{ php.lookup.fpm.user }}
+        - group: {{ php.lookup.fpm.group }}
         - file_mode: 755
         - make_dirs: True
