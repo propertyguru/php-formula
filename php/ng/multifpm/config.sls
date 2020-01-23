@@ -8,7 +8,7 @@
 {%- endmacro %}
 
 {% set ini_settings = php.ini.defaults %}
-{% for key, value in php.fpm.config.ini.settings.iteritems() %}
+{% for key, value in php.fpm.config.ini.settings.items() %}
   {% if ini_settings[key] is defined %}
     {% do ini_settings[key].update(value) %}
   {% else %}
@@ -27,7 +27,7 @@ php_fpm_ini_config:
         - file_mode: 755
         - make_dirs: True
 
-{% for pool, config in php.lookup.multi_fpm.iteritems() %}
+{% for pool, config in php.lookup.multi_fpm.items() %}
 {% if pool == 'defaults' %}{% continue %}{% endif %}
 
 {% set conf_settings = php.lookup.fpm.get('defaults', {}).copy() %}

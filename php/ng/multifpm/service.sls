@@ -6,7 +6,7 @@ include:
   - php.ng.multifpm.install
   - php.ng.multifpm.upstart
 
-{% for pool, config in php.lookup.multi_fpm.iteritems() %}
+{% for pool, config in php.lookup.multi_fpm.items() %}
 {% if pool == 'defaults' %}{% continue %}{% endif %}
 
 

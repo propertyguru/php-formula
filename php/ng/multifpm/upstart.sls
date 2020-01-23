@@ -8,7 +8,7 @@
 {%- endmacro %}
 
 
-{% for pool, config in php.lookup.multi_fpm.iteritems() %}
+{% for pool, config in php.lookup.multi_fpm.items() %}
 {% if pool == 'defaults' %}{% continue %}{% endif %}
 
 {% set state = config.service ~ '_systemd_unit' %}
