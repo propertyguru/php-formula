@@ -33,6 +33,7 @@ php_ppa_{{ state }}:
     - ppa: {{ external_repo_name }}
     - keyid: E5267A6C
     - keyserver: keyserver.ubuntu.com
+    - db_refresh: true
     - __env__:
       - LC_ALL: C.UTF-8
     - onlyif:
