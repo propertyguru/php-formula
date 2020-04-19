@@ -31,6 +31,8 @@
 php_ppa_{{ state }}:
   pkgrepo.managed:
     - ppa: {{ external_repo_name }}
+    - keyid: E5267A6C
+    - keyserver: keyserver.ubuntu.com
     - __env__:
       - LC_ALL: C.UTF-8
     - onlyif:
