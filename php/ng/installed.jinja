@@ -41,6 +41,12 @@ php_ppa_{{ state }}:
       - test ! -e /etc/apt/sources.list.d/ondrej-php-{{ grains['oscodename'] }}.list {# Trusty and Xenial use different naming schemas #}
     - require_in:
       - pkg: php_install_{{ state }}
+  
+  cmd.run:
+    - name: apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 4F4EA0AAE5267A6C
+    - unless: 'apt-key list | grep Launchpad'
+    - order: first
+
   pkg.latest:
     - name: {{ state }}
     - pkgs: {{ pkgs|json() }}
