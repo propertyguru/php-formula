@@ -31,11 +31,10 @@
 php_ppa_{{ state }}:
   pkgrepo.managed:
     - ppa: {{ external_repo_name }}
-    - keyid: E5267A6C
-    - keyserver: keyserver.ubuntu.com
     - db_refresh: true
     - __env__:
-      - LC_ALL: C.UTF-8
+      - LC_ALL: en_US.UTF-8
+      - LANG: en_US.UTF-8
     - onlyif:
       - test ! -e /etc/apt/sources.list.d/ondrej-ubuntu-php-{{ grains['oscodename'] }}.list {# Trusty and Xenial use different naming schemas #}
       - test ! -e /etc/apt/sources.list.d/ondrej-php-{{ grains['oscodename'] }}.list {# Trusty and Xenial use different naming schemas #}
