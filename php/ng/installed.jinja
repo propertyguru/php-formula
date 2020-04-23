@@ -31,23 +31,16 @@
 php_ppa_{{ state }}:
   pkgrepo.managed:
     - ppa: {{ external_repo_name }}
-    - keyid: 4F4EA0AAE5267A6C
-    - keyserver: keyserver.ubuntu.com
-    - db_refresh: true
+    - key_text: 4F4EA0AAE5267A6C
+    - refresh: true
     - __env__:
-      - LC_ALL: en_US.UTF-8
-      - LANG: en_US.UTF-8
+      - LC_ALL: C.UTF-8
     - onlyif:
       - test ! -e /etc/apt/sources.list.d/ondrej-ubuntu-php-{{ grains['oscodename'] }}.list {# Trusty and Xenial use different naming schemas #}
       - test ! -e /etc/apt/sources.list.d/ondrej-php-{{ grains['oscodename'] }}.list {# Trusty and Xenial use different naming schemas #}
     - require_in:
       - pkg: php_install_{{ state }}
   
-  cmd.run:
-    - name: apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 4F4EA0AAE5267A6C
-    - unless: 'apt-key list | grep Launchpad'
-    - order: first
-
   pkg.latest:
     - name: {{ state }}
     - pkgs: {{ pkgs|json() }}
@@ -72,7 +65,8 @@ php_ppa_{{ state }}:
     - onlyif:
       - test ! -e /etc/apt/sources.list.d/ondrej-php.list 
     - require_in:
-      - pkg: php_install_{{ state }}
+      - pkgrepo: php_install_{{ state }}
+
   pkg.latest:
     - name: {{ state }}
     - pkgs: {{ pkgs|json() }}
@@ -88,6 +82,7 @@ php_install_{{ state }}:
   pkg.installed:
     - name: {{ state }}
     - pkgs: {{ pkgs|json() }}
+    - refresh: True
 
 {% for pkg in specials %}
 
