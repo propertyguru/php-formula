@@ -31,6 +31,8 @@
 php_ppa_{{ state }}:
   pkgrepo.managed:
     - ppa: {{ external_repo_name }}
+    - keyid: 4F4EA0AAE5267A6C
+    - keyserver: keyserver.ubuntu.com
     - db_refresh: true
     - __env__:
       - LC_ALL: en_US.UTF-8
