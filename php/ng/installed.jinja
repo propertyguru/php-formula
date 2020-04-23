@@ -22,6 +22,11 @@
     {% do pkgs.append(pkginfo) %}
 {% endif %}
 
+set_locale_{{ state }}:
+   environ.setenv:
+     - name: LC_ALL
+     - value: C.UTF-8
+
 {% if grains['os_family'] == "Debian" and (state == 'cli' or state == 'fpm' or state == 'php') %}
   {% set use_external_repo = salt['pillar.get']('php:use_external_repo', False) %}
 
@@ -31,21 +36,13 @@
 php_ppa_{{ state }}:
   pkgrepo.managed:
     - ppa: {{ external_repo_name }}
-    - keyid: E5267A6C
-    - keyserver: keyserver.ubuntu.com
-    - db_refresh: true
-    - __env__:
-      - LC_ALL: C.UTF-8
     - onlyif:
       - test ! -e /etc/apt/sources.list.d/ondrej-ubuntu-php-{{ grains['oscodename'] }}.list {# Trusty and Xenial use different naming schemas #}
       - test ! -e /etc/apt/sources.list.d/ondrej-php-{{ grains['oscodename'] }}.list {# Trusty and Xenial use different naming schemas #}
+    - require:
+      - environ: set_locale_{{ state }}
     - require_in:
       - pkg: php_install_{{ state }}
-  
-  cmd.run:
-    - name: apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 4F4EA0AAE5267A6C
-    - unless: 'apt-key list | grep Launchpad'
-    - order: first
 
   pkg.latest:
     - name: {{ state }}
@@ -66,10 +63,10 @@ php_ppa_{{ state }}:
     - name: deb https://packages.sury.org/php/ {{ grains['oscodename'] }} main
     - file: /etc/apt/sources.list.d/ondrej-php.list
     - key_url: https://packages.sury.org/php/apt.gpg
-    - __env__:
-      - LC_ALL: C.UTF-8
     - onlyif:
-      - test ! -e /etc/apt/sources.list.d/ondrej-php.list 
+      - test ! -e /etc/apt/sources.list.d/ondrej-php.list
+    - require:
+      - environ: set_locale_{{ state }}
     - require_in:
       - pkg: php_install_{{ state }}
   pkg.latest:
