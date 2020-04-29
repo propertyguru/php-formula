@@ -112,10 +112,7 @@
                         },
                         'cli': {
                             'ini': '/etc/php/' + phpng_version + '/cli/php.ini',
-                        },
-                        'apache2': {
-                            'ini': '/etc/php/' + phpng_version + '/apache2/php.ini',
-                        },
+                        }
                     },
                 }),
                 'fpm': {
@@ -152,12 +149,6 @@
                     },
                 },
                 'cli': {
-                    'ini': {
-                        'opts': {},
-                        'settings': {},
-                    }
-                },
-                'apache2': {
                     'ini': {
                         'opts': {},
                         'settings': {},
@@ -328,7 +319,6 @@
                     'Debian': {
                         'pkgs': {
                             'adodb': 'libphp-adodb',
-                            'apache2': 'libapache2-mod-php' + phpng_version,
                             'apc': 'php-apcu',
                             'apcu': 'php-apcu-bc',
                             'bcmath': 'php' + phpng_version + '-bcmath',
@@ -432,9 +422,6 @@
                         'cli': {
                             'ini': '/etc/php/' + phpng_version + '/cli/php.ini',
                         },
-                        'apache2': {
-                            'ini': '/etc/php/' + phpng_version + '/apache2/php.ini',
-                        },
                     },
                 }),
                 'fpm': {
@@ -471,12 +458,6 @@
                     },
                 },
                 'cli': {
-                    'ini': {
-                        'opts': {},
-                        'settings': {},
-                    }
-                },
-                'apache2': {
                     'ini': {
                         'opts': {},
                         'settings': {},
@@ -649,7 +630,6 @@
                     'Ubuntu': {
                         'pkgs': {
                             'adodb': 'libphp-adodb',
-                            'apache2': 'libapache2-mod-php',
                             'apc': 'php',
                             'apcu': 'php-apcu',
                             'bcmath': 'php7.1-bcmath',
@@ -742,9 +722,6 @@
                         'cli': {
                             'ini': '/etc/php/7.1/cli/php.ini',
                         },
-                        'apache2': {
-                            'ini': '/etc/php/7.1/apache2/php.ini',
-                        },
                         'xcache': {
                             'ini': '/etc/php/7.1/mods-available/xcache.ini',
                             'defaults': {},
@@ -790,12 +767,6 @@
                     },
                 },
                 'cli': {
-                    'ini': {
-                        'opts': {},
-                        'settings': {},
-                    }
-                },
-                'apache2': {
                     'ini': {
                         'opts': {},
                         'settings': {},
@@ -1010,7 +981,6 @@
                     'Ubuntu': {
                         'pkgs': {
                             'adodb': 'libphp-adodb',
-                            'apache2': 'libapache2-mod-php',
                             'apc': 'php',
                             'apcu': 'php-apcu',
                             'bcmath': 'php7.0-bcmath',
@@ -1103,9 +1073,6 @@
                         'cli': {
                             'ini': '/etc/php/7.0/cli/php.ini',
                         },
-                        'apache2': {
-                            'ini': '/etc/php/7.0/apache2/php.ini',
-                        },
                         'xcache': {
                             'ini': '/etc/php/7.0/mods-available/xcache.ini',
                             'defaults': {},
@@ -1151,12 +1118,6 @@
                     },
                 },
                 'cli': {
-                    'ini': {
-                        'opts': {},
-                        'settings': {},
-                    }
-                },
-                'apache2': {
                     'ini': {
                         'opts': {},
                         'settings': {},
@@ -1371,7 +1332,6 @@
                     'Ubuntu': {
                         'pkgs': {
                             'adodb': 'php5-adodb',
-                            'apache2': 'libapache2-mod-php5',
                             'apc': 'php-apc',
                             'apcu': 'php5-apcu',
                             'bcmath': 'php5',
@@ -1486,9 +1446,6 @@
                         'cli': {
                             'ini': '/etc/php5/cli/php.ini',
                         },
-                        'apache2': {
-                            'ini': '/etc/php5/apache2/php.ini',
-                        },
                         'xcache': {
                             'ini': '/etc/php5/mods-available/xcache.ini',
                             'defaults': {},
@@ -1534,12 +1491,6 @@
                     },
                 },
                 'cli': {
-                    'ini': {
-                        'opts': {},
-                        'settings': {},
-                    }
-                },
-                'apache2': {
                     'ini': {
                         'opts': {},
                         'settings': {},
@@ -1762,7 +1713,6 @@
                     'Debian': {
                         'pkgs': {
                             'adodb': 'libphp-adodb',
-                            'apache2': 'libapache2-mod-php' + phpng_version,
                             'apc': 'php-apcu',
                             'apcu': 'php-apcu-bc',
                             'bcmath': 'php' + phpng_version + '-bcmath',
@@ -1865,9 +1815,6 @@
                         'cli': {
                             'ini': confdir + '/cli/php.ini',
                         },
-                        'apache2': {
-                            'ini': confdir + '/apache2/php.ini',
-                        },
                     },
                 }),
                 'fpm': {
@@ -1904,12 +1851,6 @@
                     },
                 },
                 'cli': {
-                    'ini': {
-                        'opts': {},
-                        'settings': {},
-                    }
-                },
-                'apache2': {
                     'ini': {
                         'opts': {},
                         'settings': {},
@@ -2080,7 +2021,6 @@
             'Debian': {
                 'pkgs': {
                     'adodb': 'php5-adodb',
-                    'apache2': 'libapache2-mod-php5',
                     'apc': 'php-apc',
                     'apcu': 'php5-apcu',
                     'bcmath': 'php5',
@@ -2187,9 +2127,6 @@
                 'cli': {
                     'ini': '/etc/php5/cli/php.ini',
                 },
-                'apache2': {
-                    'ini': '/etc/php5/apache2/php.ini',
-                },
                 'xcache': {
                     'ini': '/etc/php5/mods-available/xcache.ini',
                     'defaults': {},
@@ -2279,7 +2216,6 @@
             'Suse': {
                 'pkgs': {
                     'adodb': 'php5-dba',
-                    'apache2': 'apache2-mod_php5',
                     'cli': 'php5',
                     'curl': 'php5-curl',
                     'fpm': 'php5-fpm',
@@ -2407,12 +2343,6 @@
             },
         },
         'cli': {
-            'ini': {
-                'opts': {},
-                'settings': {},
-            }
-        },
-        'apache2': {
             'ini': {
                 'opts': {},
                 'settings': {},
