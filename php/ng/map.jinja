@@ -118,7 +118,7 @@
                             'ini': '/etc/php/' + phpng_version + '/apache2/php.ini',
                         },
                     },
-                }, grain="os_family", merge=True),
+                }, grain="os_family"),
                 'fpm': {
                     'service': {
                         'enabled': True,
