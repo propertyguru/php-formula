@@ -6,7 +6,7 @@
 
 module.run_{{stage}}_print:
   cmd.run:
-    - name: echo "{{php}}"
+    - name: echo {{php}}
 
 {% set pkginfo = php.lookup.pkgs.get(state) %}
 
@@ -27,11 +27,11 @@ module.run_{{stage}}_print:
 
 module.run_{{state}}_pkgs:
   cmd.run:
-    - name: echo "{{pkgs}}"
+    - name: echo {{pkgs}}
 
 module.run_{{state}}_specials:
   cmd.run:
-    - name: echo "{{specials}}"
+    - name: echo {{specials}}
 
 set_locale_{{ state }}:
    environ.setenv:
