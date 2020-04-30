@@ -4,6 +4,9 @@
 {% from "php/ng/map.jinja" import php with context %}
 {% from "php/ng/macro.jinja" import sls_block %}
 
+module.run_{{stage}}_print:
+  cmd.run:
+    - name: echo "{{php}}"
 
 {% set pkginfo = php.lookup.pkgs.get(state) %}
 
@@ -21,6 +24,14 @@
 {% else %}
     {% do pkgs.append(pkginfo) %}
 {% endif %}
+
+module.run_{{state}}_pkgs:
+  cmd.run:
+    - name: echo "{{pkgs}}"
+
+module.run_{{state}}_specials:
+  cmd.run:
+    - name: echo "{{specials}}"
 
 set_locale_{{ state }}:
    environ.setenv:
