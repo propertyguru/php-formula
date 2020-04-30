@@ -118,7 +118,7 @@
                             'ini': '/etc/php/' + phpng_version + '/apache2/php.ini',
                         },
                     },
-                }),
+                }, grain="os_family", merge=True),
                 'fpm': {
                     'service': {
                         'enabled': True,
@@ -1759,7 +1759,7 @@
       {%- set confdir = '/etc/php/' + phpng_version %}
     {%- endif %}
     {%- set php = salt['pillar.get']('php:ng', {
-    'lookup': salt['grains.filter_by']({
+      'lookup': salt['grains.filter_by']({
                     'Debian': {
                         'pkgs': {
                             'adodb': 'libphp-adodb',
