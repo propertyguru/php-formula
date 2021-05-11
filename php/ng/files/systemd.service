@@ -5,7 +5,7 @@ After=local-fs.target network.target
 [Service]
 PIDFile={{ pid }}
 ExecStartPre=/bin/mkdir --parents /run/php7
-ExecStart=/usr/sbin/php-fpm7.0 --fpm-config {{ fpm_conf }} --nodaemonize
+ExecStart=/usr/sbin/php-fpm{{ version }} --fpm-config {{ fpm_conf }} --nodaemonize
 Type=simple
 
 [Install]
