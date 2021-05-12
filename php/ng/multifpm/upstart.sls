@@ -2,6 +2,8 @@
 {% from "php/ng/map.jinja" import php with context %}
 
 
+{% set pillar_php_version = salt['pillar.get']('php:ng:version', '7.0') %}
+
 # Simple path concatenation.
 {% macro path_join(file, root) -%}
   {{ root ~ '/' ~ file }}
@@ -23,6 +25,7 @@
     - context:
         fpm_conf: {{ conf_path }}
         pid: {{ config.settings.global.pid }}
+        version: {{ pillar_php_version }}
   module.run:
     - name: service.systemctl_reload
     - onchanges:
