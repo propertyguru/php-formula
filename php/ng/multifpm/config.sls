@@ -26,6 +26,8 @@ php_fpm_ini_config:
         - group: root
         - file_mode: 755
         - make_dirs: True
+        - require:
+          - pkg: php_install_fpm
 
 {% for pool, config in php.lookup.multi_fpm.items() %}
 {% if pool == 'defaults' %}{% continue %}{% endif %}
