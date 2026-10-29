@@ -2,7 +2,6 @@
 {% include "php/ng/installed.jinja" %}
 
 {%- if salt['grains.get']('os_family') == "Debian" %}
-{% set current_php = salt['alternatives.show_current']('php') %}
 {% set phpng_version = salt['pillar.get']('php:ng:version', '7.0')|string %}
 
 php_{{ phpng_version }}_link:
@@ -17,5 +16,6 @@ php_{{ phpng_version }}_link:
       - pkg: php_install_{{ state }}
     - onlyif:
       - test -x /usr/bin/php{{ phpng_version }}
-      - test "{{ current_php }}" != "/usr/bin/php{{ phpng_version }}"
+      # Read when the state runs: rendering happens before php is installed, and salt['alternatives.show_current']('php') then logs an error
+      - test "$(readlink /etc/alternatives/php)" != /usr/bin/php{{ phpng_version }}
 {% endif %}
