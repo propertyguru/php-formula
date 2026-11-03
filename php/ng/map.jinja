@@ -6,6 +6,7 @@
     {%- if use_external_repo %}
         {%- set phpng_version = salt['pillar.get']('php:ng:version', '7.0')|string %}
         {%- if salt['grains.get']('osrelease')|string >= '16.04' %}
+            {# 'php' is the CLI, which provides the php command php.ng.composer runs: the phpX.Y metapackage only pulls in a SAPI, its first alternative libapache2-mod-phpX.Y unless phpX.Y-fpm is already installed #}
             {%- set php = salt['pillar.get']('php:ng', {
                 'lookup': salt['grains.filter_by']({
                     'Debian': {
@@ -52,7 +53,7 @@
                             'opcache': 'php' + phpng_version + '-opcache',
                             'pear': 'php-pear',
                             'pgsql': 'php' + phpng_version + '-pgsql',
-                            'php': 'php' + phpng_version,
+                            'php': 'php' + phpng_version + '-cli',
                             'phpenmod_command': 'phpenmod -v' + phpng_version,
                             'pspell': 'php' + phpng_version + '-pspell',
                             'redis': 'php' + phpng_version + '-redis',
