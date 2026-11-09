@@ -37,6 +37,8 @@
     - context:
         config: {{ serialize(config.get('settings', {})) }}
         environment: {{ environment }}
+    - require:
+      - pkg: php_install_fpm
 {% else %}
   file.absent:
     - name: {{ fpath }}

@@ -45,6 +45,8 @@ php_fpm_ini_config:
 {{ state }}:
 {% if config.enabled %}
   {{ php_ini(fpath, config.opts, conf_settings) }}
+    - require:
+      - pkg: php_install_fpm
 {% else %}
   file.absent:
     - name: {{ fpath }}
